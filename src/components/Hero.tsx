@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Calendar, MapPin } from 'lucide-react';
@@ -135,7 +134,7 @@ const Hero: React.FC = () => {
           
           <h1 className="font-bubblegum text-5xl md:text-7xl lg:text-8xl text-dollhouse-purple mb-12">
             <span className="block relative animate-bounce-slow inline-block">
-              Leona's 6<sup>th</sup>
+              Leona's 7<sup>th</sup>
             </span>
             <span className="block text-dollhouse-pink mt-2">
               Birthday Party!
