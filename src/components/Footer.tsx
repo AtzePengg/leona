@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           <div className="flex items-center space-x-2 mb-3">
             <PartyPopper size={18} className="text-dollhouse-purple" />
             <span className="font-bubblegum text-xl text-dollhouse-purple">
-              Leona's 6th Birthday
+              Leona's 7th Birthday
             </span>
             <Cake size={18} className="text-dollhouse-pink" />
           </div>
