@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Gift, Calendar, MapPin, Star, Heart, Clock } from 'lucide-react';
 import Header from '@/components/Header';
@@ -9,31 +8,6 @@ import AnimatedBackground from '@/components/AnimatedBackground';
 import { IMAGES } from '@/lib/constants';
 
 const Index: React.FC = () => {
-  const [imagesLoaded, setImagesLoaded] = useState({
-    leona: false,
-    leonaSmile: false,
-    leonaPeace: false
-  });
-
-  useEffect(() => {
-    // Check if images exist by creating new Image objects
-    const checkImage = (src: string, imageKey: keyof typeof imagesLoaded) => {
-      const img = new Image();
-      img.onload = () => {
-        setImagesLoaded(prev => ({ ...prev, [imageKey]: true }));
-      };
-      img.onerror = () => {
-        console.error(`Failed to load image: ${src}`);
-        setImagesLoaded(prev => ({ ...prev, [imageKey]: false }));
-      };
-      img.src = src;
-    };
-
-    checkImage(IMAGES.LEONA, 'leona');
-    checkImage(IMAGES.LEONA_SMILE, 'leonaSmile');
-    checkImage(IMAGES.LEONA_PEACE, 'leonaPeace');
-  }, []);
-
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -112,31 +86,25 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="mb-8 grid grid-cols-3 gap-4">
                     <div className="aspect-square rounded-2xl overflow-hidden bg-dollhouse-pink/20 flex items-center justify-center animate-float" style={{animationDelay: '0.5s'}}>
-                      {imagesLoaded.leona && (
-                        <img 
-                          src={IMAGES.LEONA} 
-                          alt="Leona" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
+                      <img 
+                        src={IMAGES.LEONA} 
+                        alt="Leona" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden bg-dollhouse-purple/20 flex items-center justify-center animate-float" style={{animationDelay: '0s'}}>
-                      {imagesLoaded.leonaSmile && (
-                        <img 
-                          src={IMAGES.LEONA_SMILE} 
-                          alt="Leona smiling" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
+                      <img 
+                        src={IMAGES.LEONA_SMILE} 
+                        alt="Leona smiling" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden bg-dollhouse-blue/20 flex items-center justify-center animate-float" style={{animationDelay: '1s'}}>
-                      {imagesLoaded.leonaPeace && (
-                        <img 
-                          src={IMAGES.LEONA_PEACE} 
-                          alt="Leona peace" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
+                      <img 
+                        src={IMAGES.LEONA_PEACE} 
+                        alt="Leona peace" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                   
