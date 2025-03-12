@@ -45,23 +45,23 @@ const Hero: React.FC = () => {
   }, []);
   
   return (
-    <div ref={containerRef} className="relative min-h-screen pt-24 pb-16 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 h-full">
-        <div className="flex flex-col items-center justify-center h-full text-center">
+    <div ref={containerRef} className="relative min-h-screen bg-white/50">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center py-12 text-center">
           <img 
             src={IMAGES.GABBYS_LOGO}
             alt="Gabby's Dollhouse"
-            className="w-64 md:w-80 mb-8 animate-bounce-slow"
+            className="w-64 md:w-80 mb-8"
           />
           
-          <div className="inline-flex items-center justify-center relative">
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-dollhouse-pink via-dollhouse-purple to-dollhouse-blue opacity-75 blur-md animate-pulse-gentle"></div>
+          <div className="inline-flex items-center justify-center relative mb-8">
+            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-dollhouse-pink via-dollhouse-purple to-dollhouse-blue opacity-75 blur-md"></div>
             <h2 className="relative font-bubblegum text-2xl md:text-3xl text-white bg-dollhouse-pink px-6 py-2 rounded-full">
               You're Invited!
             </h2>
           </div>
           
-          <div className="mt-8 relative">
+          <div className="relative mb-8">
             <img 
               src={IMAGES.LEONA_PEACE}
               alt="Leona"
@@ -70,8 +70,7 @@ const Hero: React.FC = () => {
             <img 
               src={IMAGES.CAKEY_CAT}
               alt="Cakey Cat"
-              className="absolute -right-4 -bottom-4 w-24 h-24 animate-bounce-slow"
-              style={{ animationDelay: '0.5s' }}
+              className="absolute -right-4 -bottom-4 w-24 h-24"
             />
           </div>
           
@@ -84,7 +83,7 @@ const Hero: React.FC = () => {
             </span>
           </h1>
           
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 w-full max-w-4xl mx-auto">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
             <div className="dollhouse-card p-6 flex flex-col items-center">
               <Calendar className="text-dollhouse-blue mb-4" size={40} />
               <p className="text-lg font-bold text-dollhouse-purple">
@@ -123,17 +122,16 @@ const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className="mt-12 grid grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
             <img 
               src={IMAGES.GABBYS_GROUP}
               alt="Gabby's Dollhouse Characters"
-              className="w-full rounded-3xl shadow-xl animate-float"
+              className="w-full rounded-3xl shadow-xl"
             />
             <img 
               src={IMAGES.GABBYS_CHARACTERS}
               alt="More Gabby's Dollhouse Friends"
-              className="w-full rounded-3xl shadow-xl animate-float"
-              style={{ animationDelay: '0.5s' }}
+              className="w-full rounded-3xl shadow-xl"
             />
           </div>
           
