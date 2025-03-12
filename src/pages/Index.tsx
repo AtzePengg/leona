@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { IMAGES } from '@/lib/constants';
 
 const Index: React.FC = () => {
   return (
@@ -86,25 +87,31 @@ const Index: React.FC = () => {
                 <div className="relative">
                   <div className="mb-8 grid grid-cols-3 gap-4">
                     <div className="aspect-square rounded-2xl overflow-hidden bg-dollhouse-pink/20 flex items-center justify-center animate-float" style={{animationDelay: '0.5s'}}>
-                      <img 
-                        src="https://source.unsplash.com/featured/?kitty,cat" 
-                        alt="Cat" 
-                        className="w-full h-full object-cover"
-                      />
+                      {imagesLoaded?.leona && (
+                        <img 
+                          src={IMAGES.LEONA} 
+                          alt="Leona" 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden bg-dollhouse-purple/20 flex items-center justify-center animate-float" style={{animationDelay: '0s'}}>
-                      <img 
-                        src="https://source.unsplash.com/featured/?dollhouse" 
-                        alt="Dollhouse" 
-                        className="w-full h-full object-cover"
-                      />
+                      {imagesLoaded?.leonaSmile && (
+                        <img 
+                          src={IMAGES.LEONA_SMILE} 
+                          alt="Leona smiling" 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                     <div className="aspect-square rounded-2xl overflow-hidden bg-dollhouse-blue/20 flex items-center justify-center animate-float" style={{animationDelay: '1s'}}>
-                      <img 
-                        src="https://source.unsplash.com/featured/?birthday,party" 
-                        alt="Birthday Party" 
-                        className="w-full h-full object-cover"
-                      />
+                      {imagesLoaded?.leonaPeace && (
+                        <img 
+                          src={IMAGES.LEONA_PEACE} 
+                          alt="Leona peace" 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                   </div>
                   

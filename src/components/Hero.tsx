@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Calendar, MapPin } from 'lucide-react';
@@ -8,6 +9,8 @@ const Hero: React.FC = () => {
   const [imagesLoaded, setImagesLoaded] = useState({
     logo: false,
     leona: false,
+    leonaPeace: false,
+    leonaSmile: false,
     cakey: false,
     group: false,
     characters: false
@@ -66,11 +69,24 @@ const Hero: React.FC = () => {
     };
 
     checkImage(IMAGES.GABBYS_LOGO, 'logo');
-    checkImage(IMAGES.LEONA_PEACE, 'leona');
+    checkImage(IMAGES.LEONA, 'leona');
+    checkImage(IMAGES.LEONA_PEACE, 'leonaPeace');
+    checkImage(IMAGES.LEONA_SMILE, 'leonaSmile');
     checkImage(IMAGES.CAKEY_CAT, 'cakey');
     checkImage(IMAGES.GABBYS_GROUP, 'group');
     checkImage(IMAGES.GABBYS_CHARACTERS, 'characters');
   }, []);
+  
+  // Determine which Leona image to show based on what's available
+  const getLeonaImage = () => {
+    if (imagesLoaded.leonaPeace) return IMAGES.LEONA_PEACE;
+    if (imagesLoaded.leona) return IMAGES.LEONA;
+    if (imagesLoaded.leonaSmile) return IMAGES.LEONA_SMILE;
+    return '';
+  };
+  
+  const leonaImage = getLeonaImage();
+  const hasLeonaImage = imagesLoaded.leona || imagesLoaded.leonaPeace || imagesLoaded.leonaSmile;
   
   return (
     <div ref={containerRef} className="relative min-h-screen bg-white/90">
@@ -96,13 +112,13 @@ const Hero: React.FC = () => {
           </div>
           
           <div className="relative mb-12">
-            {!imagesLoaded.leona ? (
+            {!hasLeonaImage ? (
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-dollhouse-pink shadow-xl mx-auto bg-gray-200 flex items-center justify-center">
                 <p className="text-gray-500">Leona's Image</p>
               </div>
             ) : (
               <img 
-                src={IMAGES.LEONA_PEACE}
+                src={leonaImage}
                 alt="Leona"
                 className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full border-4 border-dollhouse-pink shadow-xl mx-auto"
               />
