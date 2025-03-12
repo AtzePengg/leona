@@ -32,7 +32,7 @@ const Header: React.FC = () => {
             size={32} 
           />
           <span className="font-bubblegum text-2xl md:text-3xl text-dollhouse-pink">
-            Leona's 6th Birthday!
+            Leona's 7th Birthday!
           </span>
         </Link>
         
