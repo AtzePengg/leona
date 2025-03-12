@@ -1,10 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Calendar, MapPin } from 'lucide-react';
 import { IMAGES } from '@/lib/constants';
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [imagesLoaded, setImagesLoaded] = useState({
+    logo: false,
+    leona: false,
+    cakey: false,
+    group: false,
+    characters: false
+  });
   
   useEffect(() => {
     // Add sparkle effect on mouse move
@@ -44,19 +51,42 @@ const Hero: React.FC = () => {
     };
   }, []);
   
+  useEffect(() => {
+    // Check if images exist by creating new Image objects
+    const checkImage = (src: string, imageKey: keyof typeof imagesLoaded) => {
+      const img = new Image();
+      img.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [imageKey]: true }));
+      };
+      img.onerror = () => {
+        console.error(`Failed to load image: ${src}`);
+        setImagesLoaded(prev => ({ ...prev, [imageKey]: false }));
+      };
+      img.src = src;
+    };
+
+    checkImage(IMAGES.GABBYS_LOGO, 'logo');
+    checkImage(IMAGES.LEONA_PEACE, 'leona');
+    checkImage(IMAGES.CAKEY_CAT, 'cakey');
+    checkImage(IMAGES.GABBYS_GROUP, 'group');
+    checkImage(IMAGES.GABBYS_CHARACTERS, 'characters');
+  }, []);
+  
   return (
     <div ref={containerRef} className="relative min-h-screen bg-white/90">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center py-12 text-center">
-          <img 
-            src={IMAGES.GABBYS_LOGO}
-            alt="Gabby's Dollhouse"
-            className="w-64 md:w-96 mb-8 animate-bounce-slow"
-            onError={(e) => {
-              console.error('Error loading Gabby\'s Logo');
-              e.currentTarget.style.display = 'none';
-            }}
-          />
+          {!imagesLoaded.logo ? (
+            <div className="w-64 md:w-96 h-32 mb-8 bg-gray-200 rounded-lg flex items-center justify-center">
+              <p className="text-gray-500">Gabby's Dollhouse Logo</p>
+            </div>
+          ) : (
+            <img 
+              src={IMAGES.GABBYS_LOGO}
+              alt="Gabby's Dollhouse"
+              className="w-64 md:w-96 mb-8 animate-bounce-slow"
+            />
+          )}
           
           <div className="inline-flex items-center justify-center relative mb-8">
             <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-dollhouse-pink via-dollhouse-purple to-dollhouse-blue opacity-75 blur-md"></div>
@@ -66,24 +96,25 @@ const Hero: React.FC = () => {
           </div>
           
           <div className="relative mb-12">
-            <img 
-              src={IMAGES.LEONA_PEACE}
-              alt="Leona"
-              className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full border-4 border-dollhouse-pink shadow-xl mx-auto"
-              onError={(e) => {
-                console.error('Error loading Leona\'s image');
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-            <img 
-              src={IMAGES.CAKEY_CAT}
-              alt="Cakey Cat"
-              className="absolute -right-4 -bottom-4 w-24 h-24 md:w-32 md:h-32 animate-bounce-slow"
-              onError={(e) => {
-                console.error('Error loading Cakey Cat image');
-                e.currentTarget.style.display = 'none';
-              }}
-            />
+            {!imagesLoaded.leona ? (
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-dollhouse-pink shadow-xl mx-auto bg-gray-200 flex items-center justify-center">
+                <p className="text-gray-500">Leona's Image</p>
+              </div>
+            ) : (
+              <img 
+                src={IMAGES.LEONA_PEACE}
+                alt="Leona"
+                className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-full border-4 border-dollhouse-pink shadow-xl mx-auto"
+              />
+            )}
+            
+            {imagesLoaded.cakey && (
+              <img 
+                src={IMAGES.CAKEY_CAT}
+                alt="Cakey Cat"
+                className="absolute -right-4 -bottom-4 w-24 h-24 md:w-32 md:h-32 animate-bounce-slow"
+              />
+            )}
           </div>
           
           <h1 className="font-bubblegum text-5xl md:text-7xl lg:text-8xl text-dollhouse-purple mb-12">
@@ -118,15 +149,12 @@ const Hero: React.FC = () => {
             
             <div className="dollhouse-card p-6 md:col-span-2 lg:col-span-1 flex flex-col items-center">
               <div className="mb-4 bg-dollhouse-yellow/20 p-3 rounded-full">
-                <img 
-                  src="https://source.unsplash.com/featured/?kitty,dollhouse" 
-                  alt="Birthday Theme" 
-                  className="w-16 h-16 object-cover rounded-full"
-                  style={{objectPosition: 'center'}}
-                />
+                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Party Image</span>
+                </div>
               </div>
               <p className="text-lg font-bold text-dollhouse-purple">
-                Gabby's Dollhouse Theme
+                Party Motto: Gabby's Dollhouse
               </p>
               <p className="text-gray-600">
                 Games, Treats & Fun!
@@ -136,26 +164,30 @@ const Hero: React.FC = () => {
           
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
             <div className="dollhouse-card p-4 overflow-hidden">
-              <img 
-                src={IMAGES.GABBYS_GROUP}
-                alt="Gabby's Dollhouse Characters"
-                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
-                onError={(e) => {
-                  console.error('Error loading Gabby\'s Group image');
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              {!imagesLoaded.group ? (
+                <div className="w-full h-64 md:h-80 bg-gray-200 rounded-2xl flex items-center justify-center">
+                  <p className="text-gray-500">Gabby's Group Image</p>
+                </div>
+              ) : (
+                <img 
+                  src={IMAGES.GABBYS_GROUP}
+                  alt="Gabby's Dollhouse Characters"
+                  className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
+                />
+              )}
             </div>
             <div className="dollhouse-card p-4 overflow-hidden">
-              <img 
-                src={IMAGES.GABBYS_CHARACTERS}
-                alt="More Gabby's Dollhouse Friends"
-                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
-                onError={(e) => {
-                  console.error('Error loading Gabby\'s Characters image');
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              {!imagesLoaded.characters ? (
+                <div className="w-full h-64 md:h-80 bg-gray-200 rounded-2xl flex items-center justify-center">
+                  <p className="text-gray-500">Gabby's Characters Image</p>
+                </div>
+              ) : (
+                <img 
+                  src={IMAGES.GABBYS_CHARACTERS}
+                  alt="More Gabby's Dollhouse Friends"
+                  className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
+                />
+              )}
             </div>
           </div>
           
