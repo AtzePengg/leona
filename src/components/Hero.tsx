@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
           <div className="inline-flex items-center justify-center relative mb-8">
             <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-dollhouse-pink via-dollhouse-purple to-dollhouse-blue opacity-75 blur-md"></div>
             <h2 className="relative font-bubblegum text-2xl md:text-3xl text-white bg-dollhouse-pink px-6 py-2 rounded-full">
-              Welcome to Gabby's Dollhouse Party!
+              Leona's Dollhouse Party!
             </h2>
           </div>
           
