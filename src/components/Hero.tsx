@@ -145,7 +145,7 @@ const Hero: React.FC = () => {
             <div className="dollhouse-card p-6 flex flex-col items-center">
               <Calendar className="text-dollhouse-blue mb-4" size={40} />
               <p className="text-lg font-bold text-dollhouse-purple">
-                Friday, April 5th
+                Saturday, April 5th
               </p>
               <p className="text-gray-600">
                 2:00 PM - 5:00 PM
@@ -162,17 +162,25 @@ const Hero: React.FC = () => {
               </p>
             </div>
             
-            <div className="dollhouse-card p-6 md:col-span-2 lg:col-span-1 flex flex-col items-center">
-              <div className="mb-4 bg-dollhouse-yellow/20 p-3 rounded-full">
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-                  <span className="text-gray-500 text-sm">Party Image</span>
-                </div>
+            <div className="dollhouse-card p-6 md:col-span-2 flex flex-col items-center">
+              <div className="mb-4 bg-dollhouse-yellow/20 p-3 rounded-lg w-full max-w-xs">
+                {!imagesLoaded.cakey ? (
+                  <div className="w-full h-32 bg-gray-200 rounded-lg flex items-center justify-center">
+                    <span className="text-gray-500 text-sm">Party Image</span>
+                  </div>
+                ) : (
+                  <img 
+                    src={IMAGES.CAKEY_CAT}
+                    alt="Cakey Cat"
+                    className="w-full h-32 object-contain rounded-lg"
+                  />
+                )}
               </div>
               <p className="text-lg font-bold text-dollhouse-purple">
                 Party Motto: Gabby's Dollhouse
               </p>
               <p className="text-gray-600">
-                Games, Treats & Fun!
+                Cake, Surprises & Fun!
               </p>
             </div>
           </div>

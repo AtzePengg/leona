@@ -42,7 +42,7 @@ const Confirmation: React.FC = () => {
               </h1>
               
               <p className="text-gray-600">
-                Thanks for registering for Leona's 6th birthday party. We're so excited to see you there!
+                Thanks for registering for Leona's 7th birthday party. We're so excited to see you there!
               </p>
             </div>
             
@@ -109,7 +109,7 @@ const Confirmation: React.FC = () => {
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="flex flex-col items-center">
                   <CalendarCheck size={28} className="text-dollhouse-pink mb-3" />
-                  <p className="font-bold text-dollhouse-purple">Friday, April 5th, 2024</p>
+                  <p className="font-bold text-dollhouse-purple">Saturday, April 5th, 2024</p>
                   <p className="text-gray-600">2:00 PM - 5:00 PM</p>
                 </div>
                 

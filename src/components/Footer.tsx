@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
           </div>
           
           <p className="text-center text-gray-600 mb-3">
-            Friday, April 5th, 2024 • 2:00 PM - 5:00 PM<br />
+            Saturday, April 5th, 2024 • 2:00 PM - 5:00 PM<br />
             Ackerstrasse 11, 8005 Zürich
           </p>
           
